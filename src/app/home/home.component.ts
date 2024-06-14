@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      isCompleted: [false, Validators.required] // Default status is false (pending)
+      isCompleted: [false, Validators.required] 
     });
   }
 

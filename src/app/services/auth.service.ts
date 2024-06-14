@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token'); // Adjust based on your actual implementation
+    return !!localStorage.getItem('token'); 
   }
 
   userLogIn(token: string): void {
