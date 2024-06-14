@@ -1,0 +1,64 @@
+<div class="container ">
+  <div class=" d-flex flex-row justify-content-end align-items-end ">
+    <button type="button" class="btn btn-outline-danger " (click)="onLogOut()">LogOut</button>  
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-4">
+      <div class="card mt-5">
+        <div class="card-body">
+          <div>
+            <h3 class="card-title text-center">Todo App</h3>
+            <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+              <div class="form-group mb-3">
+                <label for="title">Title</label>
+                <input type="text" id="title" class="form-control" formControlName="title" />
+                <div *ngIf="todoForm.get('title')?.touched && todoForm.get('title')?.invalid" class="text-danger">
+                  Title is required.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" formControlName="description"></textarea>
+                <div *ngIf="todoForm.get('description')?.touched && todoForm.get('description')?.invalid"
+                  class="text-danger">
+                  Description is required.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="status">Status</label>
+                <select id="status" class="form-control" formControlName="isCompleted">
+                  <option value=false>Pending</option>
+                  <option value=true>Completed</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="todoForm.invalid">Add Todo</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card todo-list mt-5 col-md-8 col-lg-4">
+        <div >
+          <ul class="list-group list-group-flush mt-4">
+            <li class="list-group-item" *ngFor="let todo of todos; let i = index">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5>{{ todo.title }}</h5>
+                  <p>{{ todo.description }}</p>
+                  <span class="badge" [class.bg-warning]="!todo.isCompleted" [class.bg-success]="todo.isCompleted">
+                    {{ todo.isCompleted ? 'Completed' : 'Pending' }}
+                  </span>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-success" (click)="updateTodoStatus(todo, true)" [disabled]="todo.isCompleted">Complete</button>
+                  <button class="btn btn-sm btn-warning" (click)="updateTodoStatus(todo, false)" [disabled]="!todo.isCompleted">Pending</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteTodo(todo.id)">Delete</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+    
+        </div>
+    </div>
+  </div>
+</div>

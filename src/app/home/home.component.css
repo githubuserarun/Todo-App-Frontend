@@ -1,0 +1,20 @@
+.container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    padding: 20px;
+    
+  }
+  .todo-list{
+    overflow: auto;
+    width: 600px;
+    height: 410px;
+  }
+  
+  .btn-block {
+    width: 100%;
+  }
+  
+ 
+  
